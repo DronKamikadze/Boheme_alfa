@@ -2,13 +2,11 @@ import React, { useEffect, useState, useRef, useContext } from 'react';
 import styles from '../../styles/HomeProducts.module.css';
 import { ITEMS } from '../data';
 import CartContext from '../Basket/CartContext';
+import { Link } from 'react-router-dom';
+import { ROUTES } from '../../utils/routes';
 
 const HomeProducts: React.FC = () => {
   const [items, setItems] = useState(ITEMS);
-  const scrollerRef = useRef<HTMLDivElement>(null);
-  const innerRef = useRef<HTMLUListElement>(null);
-
-
   const context = useContext(CartContext);
 
   useEffect(() => {
@@ -43,17 +41,33 @@ const HomeProducts: React.FC = () => {
                 <li key={index}>
                   <div className={styles.card}>
                     <div className={styles.card__top}>
-                      <a href="#">
+
+                      <Link
+                        to={ROUTES.SINGLEPRODUCT + '/' + item.article} 
+                        state={{ product: item }}
+                      >
                         <img className={styles.card__image} src={item.image} alt={item.name} />
-                      </a>
+                      </Link>
+
+                  
                     </div>
                     <div className={styles.card__bottom}>
-                      <a href='#' className={styles.card__collection}>
+                      <Link
+                        to={ROUTES.SINGLEPRODUCT + '/' + item.article} 
+                        state={{ product: item }}
+                        className={styles.card__collection}
+                      >
                         {item.collection}
-                      </a>
-                      <a href='#' className={styles.card__artic}>
+                      </Link>
+
+                      <Link
+                        to={ROUTES.SINGLEPRODUCT + '/' + item.article} 
+                        state={{ product: item }}
+                        className={styles.card__artic}
+                      >
                         {item.article}
-                      </a>
+                      </Link>
+                    
                       {cartItems.some(i => i.article === item.article) ? (
                     <button className={styles.card__add}
                       onClick={() => handleAddToCart({

@@ -13,6 +13,7 @@
     margin: 10px;
     width: 400px;
     height: 630px;
+    opacity: 0.9;
     background-color: #364657;
     min-height: 301px;
     box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
@@ -70,9 +71,13 @@
 }
 
 
+
+
 .card__name{
     display: block;
     font-weight: bold;
+
+    text-decoration: none;
     
     margin-left: 30px;
     margin-right: 30px;
@@ -84,7 +89,7 @@
   
     font-size: 24px;
     color: #fff;
-    text-decoration: none;
+    
     font-family: 'Proxima nova', sans-serif;
 }
 
@@ -159,7 +164,8 @@
 }
 
 .h2{
-    margin-left: 10px;
+    margin-left: 50px;
+    font-size: 30px;
 }
 
 .footer__container {
@@ -205,11 +211,13 @@
 .quantity__controls {
     width: 192px;
     height: 65px;
-    background-color: #A9B7B8;
+    background: linear-gradient(#A9B7B8, #85919D);
+    opacity: 0.8;
     border-radius: 30px;
     display: flex;
     align-items: center;
     margin-left: 102px;
+    margin-top: 24px;
     justify-content: space-evenly;
 
   }
@@ -217,7 +225,8 @@
   .quantity__button {
     width: 35px; 
     height: 35px; 
-    background-color: #A9B7B8;
+    
+    background: linear-gradient(#A9B7B8, #85919D);
     border-radius: 50%; 
     
     

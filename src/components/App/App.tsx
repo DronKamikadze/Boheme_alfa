@@ -27,7 +27,11 @@ const App = () =>{
         <div className='container'>
         </div>
         <AppRoutes />
-        <Footer />
+
+        <div className={styles.footer}>
+          <Footer />
+        </div>
+        
       </div>
     </CartProvider>
   )

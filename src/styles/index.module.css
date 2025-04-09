@@ -3,6 +3,9 @@
     padding: 0;
     width: 100vw;
     background-size: cover;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Занимает всю высоту экрана */
 }
 
 
@@ -15,3 +18,23 @@ body, #root {
     height: 100%;
     width: 100%;
 }
+.footer {
+    flex-shrink: 0; /* Запрещает сжатие футера */
+    
+    background: #f8f9fa; /* Пример стиля */
+    padding: 0;
+    margin: 0;
+}
+
+.main {
+    flex: 1 1 auto; /* Растягивает контент на свободное пространство */
+    padding: 20px; /* Отступы для контента */
+}
+  
+  /* Для пустой корзины */
+  .empty-cart {
+    height: 100%; /* Занимает всю доступную высоту */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

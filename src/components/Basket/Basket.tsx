@@ -2,6 +2,8 @@
 import React, { useContext } from 'react';
 import styles from '../../styles/Basket.module.css';
 import CartContext from './CartContext';
+import { Link } from 'react-router-dom';
+import { ROUTES } from '../../utils/routes';
 
 const Basket = () => {
   const context = useContext(CartContext);
@@ -26,25 +28,44 @@ const Basket = () => {
         <ul className={styles.ul}>
           {cartItems.map(item => (
             <div key={item.article} className={styles.card}>
+
+
+            
                 <div className={styles.card__top}>
-                  <a href="#">
-                    <img
-                      className={styles.card__image}
-                      src={item.image}
-                      alt={item.name}
-                    />
-                  </a>
+                    <Link to={ROUTES.SINGLEPRODUCT + '/' + item.article} 
+                    state={{ product: item }}
+                     className={styles.card__name}>
+                        <img
+                        className={styles.card__image}
+                        src={item.image}
+                        alt={item.name}
+                        />
+                    </Link>    
                 </div>
                 <div className={styles.card__bottom}>
-                  <a href="#" className={styles.card__name}>
+                  
+                  <Link
+                    to={ROUTES.SINGLEPRODUCT + '/' + item.article} 
+                    state={{ product: item }}
+                    className={styles.card__name}
+                    >
                     {item.name}
-                  </a>
-                  <a href="#" className={styles.card__price}>
+                  </Link>
+                    
+                  
+                  <Link to={ROUTES.SINGLEPRODUCT + '/' + item.article} 
+                    state={{ product: item }}
+                   className={styles.card__price}>
                     Цена: {item.price} ₽
-                  </a>
-                  <a href="#" className={styles.card__article}>
+                  </Link>
+
+                  <Link to={ROUTES.SINGLEPRODUCT + '/' + item.article} 
+                    state={{ product: item }}
+                     className={styles.card__article}>
                     Артикул: {item.article}
-                  </a>
+                  </Link>
+            
+                
                 <div className={styles.quantity__controls}>
                     <button
                         className={styles.quantity__button}

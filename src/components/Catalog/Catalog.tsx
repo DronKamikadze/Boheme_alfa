@@ -4,6 +4,8 @@ import { ITEMS } from '../data';
 import Sidebar from '../Sidebar/Sidebar';
 import Basket from '../Basket/Basket';
 import CartContext from '../Basket/CartContext';
+import { Link } from 'react-router-dom';
+import { ROUTES } from '../../utils/routes';
 
 const Catalog = () => {
   const context = useContext(CartContext);
@@ -74,21 +76,35 @@ const Catalog = () => {
             {filteredItems.map(item => (
               <div key={item.article} className={styles.card}>
                 <div className={styles.card__top}>
-                  <a href="#">
+
+                  <Link
+                    to={ROUTES.SINGLEPRODUCT + '/' + item.article} 
+                    state={{ product: item }}
+                    >
                     <img
                       className={styles.card__image}
                       src={item.image}
                       alt={item.name}
                     />
-                  </a>
+                  </Link>
                 </div>
                 <div className={styles.card__bottom}>
-                  <a href="#" className={styles.card__name}>
+                  <Link
+                    to={ROUTES.SINGLEPRODUCT + '/' + item.article} 
+                    state={{ product: item }}
+                    className={styles.card__name}
+                    >
                     {item.name}
-                  </a>
-                  <a href="#" className={styles.card__article}>
+                  </Link>
+                
+                  <Link
+                    to={ROUTES.SINGLEPRODUCT + '/' + item.article} 
+                    state={{ product: item }}
+                    className={styles.card__article}
+                    >
                     Артикул: {item.article}
-                  </a>
+                  </Link>
+                
                   {cartItems.some(i => i.article === item.article) ? (
                     <button className={styles.card__add}
                       onClick={() => handleAddToCart({
