@@ -11,8 +11,6 @@ const HomeProducts: React.FC = () => {
 
   const context = useContext(CartContext);
 
-    
-
   useEffect(() => {
     if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       addAnimation();
@@ -93,10 +91,6 @@ const HomeProducts: React.FC = () => {
       );
 
   }
-
-  
-
-
   
 };
 

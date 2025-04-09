@@ -13,6 +13,26 @@
     align-items: center;
 }
 
+.cart__badge {
+    position: absolute;
+    top: 0px; 
+    right: -5px; 
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-family: 'Proxima nova', sans-serif;
+  }
+
+.cart__link {
+    position: relative; 
+    display: inline-block; 
+  }
 
 
 .menu_items {
@@ -21,6 +41,7 @@
     margin: 0;
     padding: 0;
     text-decoration: none;
+    position: relative;
 }
   
 .menu_item {

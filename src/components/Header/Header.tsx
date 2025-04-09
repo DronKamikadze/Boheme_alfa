@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import styles from '../../styles/Header.module.css'
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../utils/routes';
+import CartContext from '../Basket/CartContext';
 
 const Header = () =>{
+
+  const context = useContext(CartContext);
+
+  if (!context) return <div>Контекст корзины не доступен</div>;
+
+  const { cartItems } = context;
+
+
   return(
   <div className={styles.header}>
     <ul className={styles.menu_items}>
@@ -30,9 +39,12 @@ const Header = () =>{
       </li>
       
       <li className={styles.menu_item}>
-        <Link to={ROUTES.BASKET}>
-          <img src='src/assets/Shopping bag.svg'></img>
-        </Link>
+      <Link to={ROUTES.BASKET} className={styles.cart__link}>
+        <img src='src/assets/Shopping bag.svg'></img>
+        {cartItems.length > 0 && (
+          <span className={styles.cart__badge}>{cartItems.length}</span>
+        )}
+      </Link>
       </li>
       <li className={styles.menu_item}>
       <Link to={ROUTES.HOME}>
