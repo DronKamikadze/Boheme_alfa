@@ -9,7 +9,7 @@ const Header = () =>{
   <div className={styles.header}>
     <ul className={styles.menu_items}>
       <li className={styles.menu_item}>
-        <Link to={ROUTES.HOME}>
+        <Link to={ROUTES.ABOUT}>
           <img src ='src/assets/info.svg'></img>
         </Link>
 
@@ -30,7 +30,7 @@ const Header = () =>{
       </li>
       
       <li className={styles.menu_item}>
-        <Link to={ROUTES.HOME}>
+        <Link to={ROUTES.BASKET}>
           <img src='src/assets/Shopping bag.svg'></img>
         </Link>
       </li>

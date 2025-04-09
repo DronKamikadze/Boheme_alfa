@@ -7,6 +7,7 @@ import Sidebar from '../Sidebar/Sidebar';
 import styles from '../../styles/index.module.css'
 import { getCategories } from '../../features/categories/categoriesSlice';
 import { useAppDispatch } from '../../features/hookDispatch';
+import { CartProvider } from '../Basket/CartContext';
 
 
 const App = () =>{
@@ -20,15 +21,15 @@ const App = () =>{
 
 
   return(
-    <div className={styles.app}>
-      <Header></Header>
-      <div className='container'>
-      
+    <CartProvider> {/* Оберните приложение в CartProvider */}
+      <div className={styles.app}>
+        <Header />
+        <div className='container'>
+        </div>
+        <AppRoutes />
+        <Footer />
       </div>
-      <AppRoutes></AppRoutes>
-      <Footer></Footer>
-    
-    </div>
+    </CartProvider>
   )
 };
     
