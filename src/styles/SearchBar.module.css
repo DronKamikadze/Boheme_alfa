@@ -1,44 +1,59 @@
-.app {
-    width: 100vw;
-    max-width: 100%;
-    overflow-x: hidden;
-    margin: 0;
-    padding: 0;
+
+
+.closeButton {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
 }
 
-.catalog {
-    width: 100%;
-    max-width: 100%;
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 20px; 
+.closeButton:hover {
+    color: #666;
 }
 
-.h4{
-    margin-left: 10px;
-    font-size: 40px;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    
-
-}
-
-
-
-.catalogContainer {
+.searchContainer {
+    background: #222;
+    padding: 30px 30px 20px 30px;
+    border-radius: 12px;
+    min-width: 400px;
+    max-width: 95vw;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    color: #fff;
+    position: relative;
+    margin: 0 auto;
+  }
+  
+  .searchHeader {
     display: flex;
-    width: 100%;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  .searchResults {
+    max-height: 650px; /* или другое подходящее значение */
+    overflow-y: auto;
+    overflow-x: hidden; 
+    padding-right: 8px; /* чтобы не прилипал скроллбар */
+    /* Можно добавить background и скругления, если нужно */
+  }
+
+
+
+.searchInput {
+    width: auto;
+    max-width: 90vw;
+    padding: 10px 18px;
+    font-size: 18px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    background: #333;
+    color: #fff;
 }
+  
 
-.catalogContent {
-    flex: 1;
-}
+/* Kartochka */
 
-
-
-/*
-Карточка
-*/
 .card {
     margin: 10px;
     width: 100%;
@@ -108,30 +123,13 @@
     margin-left: 30px;
     margin-right: 30px;
     padding-top: 10px;
-
     text-align: left;
     text-overflow: ellipsis;
     overflow: hidden;
-  
     font-size: 24px;
     color: #fff;
     text-decoration: none;
     font-family: 'Proxima nova', sans-serif;
-}
-
-.card__article{
-    display: block;
-    font-weight: 500;
-    padding-left: 30px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    
-    font-size: 20px;
-    opacity: 0.5;
-    color: #fff;
-    text-decoration: none;
-    font-family: 'Proxima nova', sans-serif;
-    text-align: left;
 }
 
 .card__add {
@@ -157,10 +155,62 @@
 .card__add img{
     width: 27px;
     height: 30px;
-
     margin-right: 5px;
 }
 
 .card__title:hover {
     color: #ff6633;
   }
+
+.addToCartBtn{
+    margin-left: 20px;
+    margin-right: 20px;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    height: 55px;
+    font-weight: bold;
+    font-size: 24px;
+    background-color: #4A5867;
+    color: #ffffff;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: auto;
+    margin-bottom: 20px;
+    font-family: 'Proxima nova', sans-serif;
+}
+
+.card__price{
+    display: block;
+    font-weight: bold;
+    
+    margin-left: 30px;
+    margin-right: 30px;
+   
+
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  
+    font-size: 24px;
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Proxima nova', sans-serif;
+
+
+}
+
+.card__article{
+    display: block;
+    font-weight: 500;
+    padding-left: 30px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 20px;
+    opacity: 0.5;
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Proxima nova', sans-serif;
+    text-align: left;
+}

@@ -1,5 +1,142 @@
-.main{
-    padding: 10px;
-    
+.main {
+    padding: 24px 0;
+  }
+  
+  .product__container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  
+  .product__title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: left;
+    color: #fff;
+    font-family: 'Proxima nova', sans-serif;
 
-}
+  }
+
+  .h1{
+    font-family: 'Proxima nova', sans-serif;
+    font-size: 38px;
+    font-weight: bold;
+
+  }
+  
+  .product__body {
+    display: flex;
+    gap: 48px;
+    align-items: flex-start;
+  }
+  
+  .product__gallery {
+    flex: 0 0 400px;
+    max-width: 500px;
+    max-height: 1000px;
+    background: #222;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .product__image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+  
+  .product__info {
+    flex: 1;
+    display: flex;
+    
+    flex-direction: column;
+    gap: 18px;
+  }
+  
+  .product__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .product__article{
+    font-size: 30px;
+    font-family: 'Proxima nova', sans-serif;
+
+  }
+  .product__price {
+    font-size: 1.2rem;
+    color: #fff;
+    opacity: 0.8;
+    font-size: 36px;
+    font-family: 'Proxima nova', sans-serif;
+
+  }
+  
+  .product__add {
+    background: #27ae60;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    width: 360px;
+    cursor: pointer;
+    margin: 12px 0;
+    transition: background 0.2s;
+  }
+  .product__add:hover {
+    background: #219a52;
+  }
+  
+
+  .product__dimensions,
+  .product__other {
+    font-size: 1rem;
+    color: #ddd;
+    margin-top: 8px;
+    line-height: 1.4;
+    font-size: 26px;
+    font-family: 'Proxima nova', sans-serif;
+
+  }
+  
+
+  .product__cartControls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 16px 0;
+  }
+  
+  .product__qtyBtn {
+    background: #444;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    width: 48px;
+    height: 48px;
+    font-size: 28px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .product__qtyBtn:disabled {
+    background: #222;
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  .product__qty {
+    font-size: 1.2rem;
+    min-width: 32px;
+    font-size: 28px;
+    text-align: center;
+    color: #fff;
+  }
+  
+  
+  

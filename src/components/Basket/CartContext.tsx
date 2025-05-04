@@ -1,17 +1,15 @@
 // CartContext.tsx
 import React, { createContext, useState } from 'react';
+import { Item } from '../data';
 
-interface CartItem {
-  article: string;
-  name: string;
-  price: number | undefined;
+// Расширяем Item, добавляя обязательное поле quantity
+interface CartItem extends Item {
   quantity: number;
-  image: string | undefined;
 }
 
 interface CartContextProps {
   cartItems: CartItem[];
-  handleAddToCart: (item: CartItem) => void;
+  addToCart: (item: Item) => void;
   handleRemoveFromCart: (article: string) => void;
   handleQuantityChange: (article: string, quantity: number) => void;
 }
@@ -21,29 +19,56 @@ const CartContext = createContext<CartContextProps | null>(null);
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  const handleAddToCart = (item: CartItem) => {
-    const existingItem = cartItems.find(i => i.article === item.article);
-    if (existingItem) {
-      setCartItems(cartItems.map(i => i.article === item.article ? { ...i, quantity: i.quantity + 1 } : i));
-    } else {
-      setCartItems([...cartItems, { ...item, quantity: 1 }]);
-    }
+  const addToCart = (item: Item) => {
+    setCartItems(prev => {
+      const existingItem = prev.find(cartItem => cartItem.article === item.article);
+      
+      if (existingItem) {
+        return prev.map(cartItem => 
+          cartItem.article === item.article 
+            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            : cartItem
+        );
+      }
+      
+      // Явное преобразование Item в CartItem
+      const newCartItem: CartItem = {
+        ...item,
+        quantity: 1,
+        // Инициализация обязательных полей
+        price: item.price || 0,
+        image: item.image || '',
+        color: item.color,
+        collection: item.collection,
+        style: item.style
+      };
+      
+      return [...prev, newCartItem];
+    });
   };
 
   const handleRemoveFromCart = (article: string) => {
-    setCartItems(cartItems.filter(item => item.article !== article));
+    setCartItems(prev => prev.filter(item => item.article !== article));
   };
 
   const handleQuantityChange = (article: string, quantity: number) => {
-    if (quantity <= 0) {
-      handleRemoveFromCart(article);
-    } else {
-      setCartItems(cartItems.map(item => item.article === article ? { ...item, quantity } : item));
-    }
+    setCartItems(prev => {
+      if (quantity <= 0) {
+        return prev.filter(item => item.article !== article);
+      }
+      return prev.map(item => 
+        item.article === article ? { ...item, quantity } : item
+      );
+    });
   };
 
   return (
-    <CartContext.Provider value={{ cartItems, handleAddToCart, handleRemoveFromCart, handleQuantityChange }}>
+    <CartContext.Provider value={{ 
+      cartItems, 
+      addToCart, 
+      handleRemoveFromCart, 
+      handleQuantityChange 
+    }}>
       {children}
     </CartContext.Provider>
   );

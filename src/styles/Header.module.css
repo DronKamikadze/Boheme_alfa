@@ -3,9 +3,7 @@
     text-decoration: none;
     display: flex;
     justify-content: space-evenly;
-
     margin-top: -10px;
-
     margin-left: -10px;
     margin-right: -10px;
     width: auto;
@@ -44,6 +42,14 @@
     position: relative;
 }
   
+.menu_icon {
+    width: 34px;
+    height: 34px;
+    display: block;
+    margin-top: 12px;
+    object-fit: contain;
+}
+
 .menu_item {
     list-style-type: none;
     margin-right: 20px;
@@ -63,5 +69,13 @@
     color: #A9B7B8;
     opacity: 0.5;
 
+}
+
+.searchButton{
+    color: aqua;
+}
+
+.heim{
+    margin-top: 10px;
 }
 

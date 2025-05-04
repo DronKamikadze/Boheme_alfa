@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useTransition, useContext } from 'react';
+import { useState, useEffect, useTransition, useContext } from 'react';
 import styles from '../../styles/Catalog.module.css';
 import { ITEMS } from '../data';
 import Sidebar from '../Sidebar/Sidebar';
-import Basket from '../Basket/Basket';
 import CartContext from '../Basket/CartContext';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../utils/routes';
@@ -10,34 +9,38 @@ import { ROUTES } from '../../utils/routes';
 const Catalog = () => {
   const context = useContext(CartContext);
   const [filteredItems, setFilteredItems] = useState(ITEMS);
-
-
-
+  
   type Filters = {
     collection: string[];
     style: string[];
+    view: string[];
+    color: string[];
   };
 
   const [filters, setFilters] = useState<Filters>({
     collection: [],
     style: [],
+    view: [],
+    color: [],
   });
 
-  const collections = Array.from(new Set(ITEMS.map(item => item.collection)));
-  const stylesList = Array.from(new Set(ITEMS.map(item => item.style)));
+  const collections = Array.from(new Set(ITEMS.map(item => item.collection).filter(Boolean)));
+  const stylesList = Array.from(new Set(ITEMS.map(item => item.style).filter(Boolean)));
+  const viewsList: string[] = Array.from(
+    new Set(ITEMS.map(item => item.view).filter((v): v is string => Boolean(v)))
+  );  const [isPending, startTransition] = useTransition();
 
-  const [isPending, startTransition] = useTransition();
-
-  
-  
+  const color = Array.from(new Set(ITEMS.map(item => item.color).filter(Boolean)));
 
   useEffect(() => {
     startTransition(() => {
       const newFilteredItems = ITEMS.filter(item => {
         const collectionMatches = filters.collection.length === 0 || filters.collection.some(collection => item.collection === collection);
         const styleMatches = filters.style.length === 0 || filters.style.some(style => item.style === style);
+        const viewMatches = filters.view.length ===0 || filters.view.some(view => item.view === view);
+        const colorMatches = filters.color.length === 0 || filters.color.some(color => item.color === color);
 
-        return collectionMatches && styleMatches;
+        return collectionMatches && styleMatches && viewMatches && colorMatches;
       });
       setFilteredItems(newFilteredItems);
     });
@@ -57,13 +60,15 @@ const Catalog = () => {
   };
 
   if (context) {
-    const { handleAddToCart, cartItems } = context;
+    const { addToCart, cartItems } = context;
 
     return (
       <div className={styles.catalogContainer}>
         <Sidebar
           collections={collections}
           style={stylesList}
+          view={viewsList}
+          color={color}
           onFilterChange={handleFilterChange}
         />
 
@@ -107,26 +112,14 @@ const Catalog = () => {
                 
                   {cartItems.some(i => i.article === item.article) ? (
                     <button className={styles.card__add}
-                      onClick={() => handleAddToCart({
-                        article: item.article,
-                        name: item.name,
-                        price: item.price,
-                        quantity: 1,
-                        image: item.image
-                      })}
+                    onClick={() => addToCart(item)}
                     >
                       <img src="src/assets/Buy.png" alt="Корзина" />
                       {cartItems.find(i => i.article === item.article)?.quantity}
                     </button>
                   ) : (
                     <button className={styles.card__add}
-                      onClick={() => handleAddToCart({
-                        article: item.article,
-                        name: item.name,
-                        price: item.price,
-                        quantity: 1,
-                        image: item.image
-                      })}
+                    onClick={() => addToCart(item)}
                     >
                       <img src="src/assets/Buy.png" alt="Корзина" />
                       {item.price} ₽

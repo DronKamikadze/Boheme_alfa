@@ -28,9 +28,6 @@ const Basket = () => {
         <ul className={styles.ul}>
           {cartItems.map(item => (
             <div key={item.article} className={styles.card}>
-
-
-            
                 <div className={styles.card__top}>
                     <Link to={ROUTES.SINGLEPRODUCT + '/' + item.article} 
                     state={{ product: item }}

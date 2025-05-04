@@ -26,6 +26,19 @@ body, #root {
     margin: 0;
 }
 
+.searchModal {
+    position: fixed;
+    top: 80px; /* или подберите под ваш хедер */
+    left: 0;
+    width: 100vw;
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    /* background: none; */
+    /* pointer-events: none;  <-- этого НЕ должно быть! */
+    pointer-events: auto; /* Разрешает взаимодействие */
+  }
+
 .main {
     flex: 1 1 auto; /* Растягивает контент на свободное пространство */
     padding: 20px; /* Отступы для контента */

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import styles from '../../styles/HomeProducts.module.css';
 import { ITEMS } from '../data';
 import CartContext from '../Basket/CartContext';
@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { ROUTES } from '../../utils/routes';
 
 const HomeProducts: React.FC = () => {
-  const [items, setItems] = useState(ITEMS);
+  const [items] = useState(ITEMS);
   const context = useContext(CartContext);
 
   useEffect(() => {
@@ -32,9 +32,9 @@ const HomeProducts: React.FC = () => {
   }
 
   if(context){
-    const { handleAddToCart, cartItems } = context;
+    const { addToCart, cartItems } = context;
     return (
-        <div className={styles.scroller} data-speed="fast">
+        <div className={styles.scroller} data-speed="slow">
           <ul className={styles.tag_list}>
             <ul className={styles.scroller__inner}>
               {items.map((item, index) => (
@@ -70,26 +70,14 @@ const HomeProducts: React.FC = () => {
                     
                       {cartItems.some(i => i.article === item.article) ? (
                     <button className={styles.card__add}
-                      onClick={() => handleAddToCart({
-                        article: item.article,
-                        name: item.name,
-                        price: item.price,
-                        quantity: 1,
-                        image: item.image
-                      })}
+                      onClick={() => addToCart(item)}
                     >
                       <img src="src/assets/Buy.png" alt="Корзина" />
                       {cartItems.find(i => i.article === item.article)?.quantity}
                     </button>
                   ) : (
                     <button className={styles.card__add}
-                      onClick={() => handleAddToCart({
-                        article: item.article,
-                        name: item.name,
-                        price: item.price,
-                        quantity: 1,
-                        image: item.image
-                      })}
+                      onClick={() => addToCart(item)}
                     >
                       <img src="src/assets/Buy.png" alt="Корзина" />
                       {item.price} ₽

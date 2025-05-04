@@ -1,5 +1,4 @@
 
-import styles from '../../styles/Home.module.css'
 import Poster from "../Poster/Poster";
 import HomeProducts from "../HomeProducts/HomeProducts";
 

@@ -5,10 +5,12 @@ import styles from '../../styles/Sidebar.module.css';
 interface SidebarProps {
   collections: string[];
   style: string[];
-  onFilterChange: (filterType: 'collection' | 'style', value: string, isChecked: boolean) => void;
+  view: string[];
+  color: string[];
+  onFilterChange: (filterType: 'collection' | 'style' | 'view' | 'color', value: string, isChecked: boolean) => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ collections, style, onFilterChange }) => {
+const Sidebar: React.FC<SidebarProps> = ({ collections, style, view, color, onFilterChange }) => {
   return (
     <div className={styles.sidebar}>
       
@@ -35,6 +37,33 @@ const Sidebar: React.FC<SidebarProps> = ({ collections, style, onFilterChange })
               onChange={(e) => onFilterChange('style', e.target.value, e.target.checked)}
             />
             {style}
+          </label>
+        ))}
+      </div>
+      <div>
+        <h4>Вид</h4>
+        {view.map((view: string) => (
+          <label key={view} className={styles.header}>
+            <input
+              type="checkbox"
+              value={view}
+              onChange={(e) => onFilterChange('view', e.target.value, e.target.checked)}
+            />
+            {view}
+          </label>
+        ))}
+      </div>
+
+      <div>
+        <h4>Цвет</h4>
+        {color.map((color: string) => (
+          <label key={color} className={styles.header}>
+            <input
+              type="checkbox"
+              value={color}
+              onChange={(e) => onFilterChange('color', e.target.value, e.target.checked)}
+            />
+            {color}
           </label>
         ))}
       </div>
